@@ -922,8 +922,9 @@ services .srv-box {
 .footer .copyright {
   margin-top: 60px;
 }
-.footer .copyright span {
+.footer .copyright span  , .footer .copyright strong {
   font-weight: bold;
   color: var(--main-color);
 }
+
 /* End Footer */
