@@ -184,21 +184,39 @@ header nav .form i {
 .landing {
   min-height: 100vh;
   background-color: #1f2021;
-  
-  background-size: cover;
   position: relative;
+  overflow: hidden;
+}
+.landing .slides {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+.landing .slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+.landing .slide.active {
+  opacity: 1;
 }
 .landing .overlay {
   position: absolute;
   left: 0;
   top: 0;
-  width: 100vw;
+  width: 100%;
   height: 100%;
   background-color: rgb(0 0 0 / 60%);
-}
-.landing img{
-  width: 100vw;
-  height: 100%;
+  z-index: 1;
 }
 .landing .text {
   position: absolute;
@@ -211,6 +229,7 @@ header nav .form i {
   color: white;
   display: flex;
   justify-content: flex-end;
+  z-index: 2;
 }
 .landing .text .content {
   max-width: 500px;
@@ -238,11 +257,13 @@ header nav .form i {
   top: 50%;
   transform: translateY(-50%);
   color: #ddd;
+  font-size: 25px;
+  cursor: pointer;
+  z-index: 2;
+  transition: color 0.3s;
 }
-@media (max-width: 767px) {
-  .landing .change-background {
-    display: none;
-  }
+.landing .change-background:hover {
+  color: var(--main-color);
 }
 .landing .fa-angle-left {
   left: 30px;
@@ -250,12 +271,18 @@ header nav .form i {
 .landing .fa-angle-right {
   right: 30px;
 }
+@media (max-width: 767px) {
+  .landing .change-background {
+    display: none;
+  }
+}
 .landing .bullets {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
   bottom: 30px;
   display: flex;
+  z-index: 2;
 }
 .landing .bullets li {
   width: 20px;
@@ -263,6 +290,8 @@ header nav .form i {
   border: 1px solid white;
   border-radius: 50%;
   margin-right: 10px;
+  cursor: pointer;
+  transition: 0.3s;
 }
 .landing .bullets li.active {
   background-color: var(--main-color);
@@ -270,10 +299,9 @@ header nav .form i {
 }
 /* End Landing */
 /* services */
-.services{
+.services {
   padding-top: var(--section-padding);
   padding-bottom: var(--section-padding);
-
 }
 @media (min-width: 768px) {
   .services .services-container {
@@ -283,7 +311,7 @@ header nav .form i {
     grid-row-gap: 60px;
   }
 }
-services .srv-box {
+.services .srv-box {
   display: flex;
 }
 .services .srv-box i {
@@ -310,7 +338,7 @@ services .srv-box {
 }
 /* End Services */
 /* design  */
-.design{
+.design {
   padding-top: var(--section-padding);
   padding-bottom: var(--section-padding);
   height: 600px;
@@ -321,77 +349,73 @@ services .srv-box {
   align-items: center;
   overflow: hidden;
 }
-.design::before{
+.design::before {
   content: '';
-   position: absolute;
+  position: absolute;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
   background-color: rgb(0 0 0 / 60%);
 }
-.design .image , .design .text{
+.design .image,
+.design .text {
   position: relative;
   z-index: 2;
   flex: 1;
-
 }
-.design .image{
+.design .image {
   text-align: center;
 }
-.design .image  img{
+.design .image img {
   position: relative;
   bottom: -120px;
 }
-.design .text{
+.design .text {
   color: white;
   padding: 50px;
   background-color: var(--transparent-color);
-
 }
 /* portfolio */
-.portfolio{
+.portfolio {
   padding-top: var(--section-padding);
   padding-bottom: var(--section-padding);
 }
-.portfolio .shuffle{
+.portfolio .shuffle {
   display: flex;
   justify-content: center;
 }
-.portfolio .shuffle li{
+.portfolio .shuffle li {
   padding: 10px;
 }
-.portfolio .shuffle li.active{
+.portfolio .shuffle li.active {
   background-color: var(--main-color);
   color: white;
 }
-.portfolio .imgs-container{
-   display: flex;
-   flex-wrap: wrap;
-   margin-top: 60px;
+.portfolio .imgs-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 60px;
 }
-.portfolio .imgs-container .box{
-  /* flex-basis: 25%; */
+.portfolio .imgs-container .box {
   position: relative;
   overflow: hidden;
 }
-@media (min-width : 768px) {
- .portfolio .imgs-container .box{
-  flex-basis: 50%;
+@media (min-width: 768px) {
+  .portfolio .imgs-container .box {
+    flex-basis: 50%;
+  }
 }
-  
+@media (min-width: 1199px) {
+  .portfolio .imgs-container .box {
+    flex-basis: 25%;
+  }
 }
-@media (min-width : 1199px) {
- .portfolio .imgs-container .box{
-  flex-basis:25%;
-}
-  
-}
-.portfolio .imgs-container .box img{
+.portfolio .imgs-container .box img {
   max-width: 100%;
   transition: .3s;
 }
-.portfolio .imgs-container .box .caption{
+.portfolio .imgs-container .box .caption {
   position: absolute;
   left: 0;
   padding: 20px;
@@ -400,32 +424,29 @@ services .srv-box {
   transition: .3s;
   bottom: -100px;
 }
-.portfolio .imgs-container .box:hover .caption{
+.portfolio .imgs-container .box:hover .caption {
   bottom: 0;
 }
-.portfolio .imgs-container .box:hover img{
-   transform: rotate(3deg) scale(1.1);
-   
+.portfolio .imgs-container .box:hover img {
+  transform: rotate(3deg) scale(1.1);
 }
 /* video */
-.video{
+.video {
   position: relative;
 }
-.video::before{
+.video::before {
   content: '';
-   position: absolute;
+  position: absolute;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
   background-color: rgb(0 0 0 / 40%);
-  /* z-index: 2; */
 }
 .video video {
-   width: 100%;
-
+  width: 100%;
 }
-.video .text  {
+.video .text {
   width: 100%;
   position: absolute;
   top: 50%;
@@ -440,47 +461,42 @@ services .srv-box {
   text-transform: uppercase;
   font-weight: normal;
 }
-.video .text p{
+.video .text p {
   margin-bottom: 30px;
 }
-.video .text button{
+.video .text button {
   background-color: black;
   color: white;
   padding: 10px 20px;
   border: none;
   text-transform: uppercase;
-
-  
 }
 /* about */
-.about{
+.about {
   padding-top: var(--section-padding);
   overflow: hidden;
   text-align: center;
 }
-.about img{
+.about img {
   position: relative;
   bottom: -120px;
   margin-top: -120px;
   max-width: 100%;
 }
 @media (max-width: 767px) {
-  .about img{
-  
-  bottom: -60px;
-  margin-top: -60px;
-}
+  .about img {
+    bottom: -60px;
+    margin-top: -60px;
+  }
 }
 /* stat  */
-.stats{
+.stats {
   padding-top: var(--section-padding);
   padding-bottom: var(--section-padding);
   text-align: center;
   background-image: url(/images/stats.png);
   background-size: cover;
   position: relative;
-
- 
 }
 .stats::before {
   content: '';
@@ -489,35 +505,32 @@ services .srv-box {
   top: 0;
   width: 100%;
   height: 100%;
- background-color: rgb(0 0 0 / 70%);
+  background-color: rgb(0 0 0 / 70%);
 }
-.stats .container{
-   position: relative;
-   display: flex;
-   flex-wrap: wrap;
+.stats .container {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
 }
-.stats .container .box{
+.stats .container .box {
   color: white;
   padding: 50px;
   background-color: var(--transparent-color);
 }
-@media (max-width : 767px) {
-  .stats .container .box{
-    flex-basis : 100%;
+@media (max-width: 767px) {
+  .stats .container .box {
+    flex-basis: 100%;
   }
-  
 }
-@media (min-width : 768px) {
-  .stats .container .box{
-    flex-basis : 50%;
+@media (min-width: 768px) {
+  .stats .container .box {
+    flex-basis: 50%;
   }
-  
 }
-@media (min-width : 991px) {
-  .stats .container .box{
-    flex-basis : 25%;
+@media (min-width: 991px) {
+  .stats .container .box {
+    flex-basis: 25%;
   }
-  
 }
 /* Start Skills */
 .our-skills {
@@ -632,17 +645,16 @@ services .srv-box {
   top: -15px;
 }
 /* quote */
-.quote{
+.quote {
   padding-top: var(--section-padding);
   padding-bottom: var(--section-padding);
   background-image: url(/images/quote.jpg);
-
   background-size: cover;
   position: relative;
   text-align: center;
   color: white;
 }
-.quote::before{
+.quote::before {
   content: '';
   position: absolute;
   top: 0;
@@ -651,7 +663,7 @@ services .srv-box {
   height: 100%;
   background-color: rgb(0 0 0 / 70%);
 }
-.quote .container{
+.quote .container {
   position: relative;
 }
 /* pricing */
@@ -668,27 +680,26 @@ services .srv-box {
   background-color: #fcfcfc;
   text-align: center;
 }
-.pricing .plans .plan .head{
-  padding: 40px 20px; 
+.pricing .plans .plan .head {
+  padding: 40px 20px;
   border-top: 1px solid var(--main-color);
   border-bottom: 1px solid var(--main-color);
 }
-.pricing .plans .plan .head h3{
-    font-weight: normal;
-    margin: 20px;
-    text-transform: uppercase;
-
+.pricing .plans .plan .head h3 {
+  font-weight: normal;
+  margin: 20px;
+  text-transform: uppercase;
 }
-.pricing .plans .plan .head span{
+.pricing .plans .plan .head span {
   font-size: 50px;
   font-weight: 600;
   position: relative;
 }
-.pricing .plans .plan .head span::before{
+.pricing .plans .plan .head span::before {
   content: '$';
   font-size: 25px;
   position: relative;
-  top:-40px;
+  top: -40px;
   margin-right: 15px;
 }
 .pricing .plans .plan .head span::after {
@@ -926,9 +937,9 @@ services .srv-box {
 .footer .copyright {
   margin-top: 60px;
 }
-.footer .copyright span  , .footer .copyright strong {
+.footer .copyright span,
+.footer .copyright strong {
   font-weight: bold;
   color: var(--main-color);
 }
-
 /* End Footer */
