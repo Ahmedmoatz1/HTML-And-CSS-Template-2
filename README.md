@@ -10,7 +10,7 @@
 ---
 
 ## 🚀 Overview
-**HTML-And-CSS-Template-1** is a modern and minimal web layout built using **pure HTML and CSS**.  
+**HTML-And-CSS-Template-2** is a modern and minimal web layout built using **pure HTML and CSS**.  
 It features a **terminal-style** design — clean, fast, and easy to customize.  
 Perfect for beginners or front-end developers who want to learn layout structuring and styling fundamentals.
 
